@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Compile the Python script and set the output filename
+python3 -m compileall -b "$PYFILE"
