@@ -4,6 +4,7 @@
 This module defines a simple Square class with no attributes.
 """
 
+
 class Square:
     """Empty class representing a square.
 
@@ -11,4 +12,3 @@ class Square:
         No attributes are defined for this class.
     """
     pass
-
