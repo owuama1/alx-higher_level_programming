@@ -7,11 +7,11 @@ def calculate(a, operator, b):
     if operator == '+':
         return add(a, b)
     elif operator == '-':
-        return subtract(a, b)
+        return sub(a, b)
     elif operator == '*':
-        return multiply(a, b)
+        return mul(a, b)
     elif operator == '/':
-        return divide(a, b)
+        return div(a, b)
 
 
 if __name__ == "__main__":
