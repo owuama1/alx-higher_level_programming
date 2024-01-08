@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""Module containing the Rectangle class"""
+"""Module of a rectangle class"""
+
 
 class Rectangle:
     """Class representing a rectangle.
@@ -10,14 +11,14 @@ class Rectangle:
     """
 
     def __init__(self, width=0, height=0):
-        """Initialize a Rectangle instance with optional width and height.
+        """Initialize a Rectangle instance with optional height and width.
 
         Args:
             height (int, optional): The height of the rectangle. Defaults to 0.
             width (int, optional): The width of the rectangle. Defaults to 0.
         """
-        self.__height = height
-        self.__width = width
+        self.height = height
+        self.width = width
 
     @property
     def height(self):
