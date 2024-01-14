@@ -1,0 +1,57 @@
+    # 2-matrix_divided.txt
+    ====================
+    Using 2-matrix_divided.py
+	--------------------
+	This module contains a function matrix_divided that divides all elements
+	of a matrix by a given divisor.
+	How to use it
+	===================
+	``matrix_divided(matrix, div)`` returns the divison of all the elements of the matrix
+	# Normal case
+	>>> matrix_divided = __import__('2-matrix_divided').matrix_divided
+    >>> matrix = [[1, 2, 3], [4, 5, 6]]
+    >>> matrix_divided(matrix, 3)
+    [[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
+
+	# Matrix with negative values
+    >>> matrix = [[-1, -2, -3], [-4, -5, -6], [-7, -8, -9]]
+    >>> matrix_divided(matrix, 2)
+    [[-0.5, -1.0, -1.5], [-2.0, -2.5, -3.0], [-3.5, -4.0, -4.5]]
+
+    # Matrix with all zeros
+    >>> matrix = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    >>> matrix_divided(matrix, 2)
+    [[0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0]]
+
+    # Dividing by 1 (no change)
+    >>> matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    >>> matrix_divided(matrix, 1)
+    [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0]]
+
+    # Dividing by 0 (should raise ZeroDivisionError)
+    >>> matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    >>> matrix_divided(matrix, 0)
+    Traceback (most recent call last):
+    ...
+    ZeroDivisionError: division by zero
+
+    # Non-numeric divisor (should raise TypeError)
+    >>> matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    >>> matrix_divided(matrix, 'abc')
+    Traceback (most recent call last):
+    ...
+    TypeError: div must be a number
+
+    # Non-numeric matrix element (should raise TypeError)
+    >>> matrix = [[1, 'a', 3], [4, 5, 6], [7, 8, 9]]
+    >>> matrix_divided(matrix, 2)
+    Traceback (most recent call last):
+    ...
+    TypeError: unsupported operand type(s) for /: 'str' and 'int'
+
+    # Rows with different sizes (should raise TypeError)
+    >>> matrix = [[1, 2, 3], [4, 5], [7, 8, 9]]
+    >>> matrix_divided(matrix, 2)
+    Traceback (most recent call last):
+    ...
+    TypeError: Each row of the matrix must have the same size
