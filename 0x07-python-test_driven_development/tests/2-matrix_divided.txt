@@ -73,7 +73,9 @@
 	...
 	TypeError: matrix must be a matrix (list of lists) of integers/floats
 
-	# Empty list
-	>>> matrix = [[]]
-	>>> matrix_divided(matrix, 2)
-	[[]]
+	# Test a list
+	>>> matrix = [2, 3, 4]
+    >>> print(matrix_divided(matrix, 2))
+    Traceback (most recent call last):
+	...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
