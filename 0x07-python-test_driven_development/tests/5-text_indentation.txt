@@ -9,3 +9,9 @@
     >>> text_indentation("Hi:")
     Hi:
     <BLANKLINE>
+
+	# Test with None
+	>>> text_indentation(None)
+	Traceback (most recent call last):
+	...
+	TypeError: text must be a string
