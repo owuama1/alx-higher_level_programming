@@ -65,3 +65,10 @@
     >>> matrix = [[2.2, 4], [3, 6.6]]
     >>> matrix_divided(matrix, 2)
     [[1.1, 2.0], [1.5, 3.3]]
+
+    # Using None
+	>>> matrix = None
+	>>> matrix_divided(matrix, 2)
+	Traceback (most recent call last):
+	...
+	TypeError: matrix must be a matrix (list of lists) of integers/floats
