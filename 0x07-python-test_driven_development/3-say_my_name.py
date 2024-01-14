@@ -6,6 +6,7 @@ This module provides a function to print a formatted name statement.
 
 """
 
+
 def say_my_name(first_name, last_name=""):
     """
     Prints the statement "My name is <first_name> <last_name>".
