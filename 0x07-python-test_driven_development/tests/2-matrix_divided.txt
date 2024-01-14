@@ -74,6 +74,6 @@
 	TypeError: matrix must be a matrix (list of lists) of integers/floats
 
 	# Empty list
-	>>> matrix = []
+	>>> matrix = [[]]
 	>>> matrix_divided(matrix, 2)
-	[]
+	[[]]
