@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 The defines a funct for text indentation. The funct takes a string as input
 and prints the text with two new lines after each '.', '?', and ':' character.
