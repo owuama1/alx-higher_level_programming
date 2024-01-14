@@ -14,3 +14,7 @@
 	Traceback (most recent call last):
 	...
 	TypeError: first_name must be a string
+
+	# Test without last name leaves additional blank space
+	>>> say_my_name("Kelechi")
+	My name is Kelechi 
