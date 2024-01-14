@@ -48,3 +48,9 @@
 	# Test large float values
 	>>> add_integer(1e20, 1e20)
 	200000000000000000000
+
+    # Test with infinity
+	>>> add_integer(float('inf'))
+	Traceback (most recent call last):
+	...
+	OverflowError: cannot convert float infinity to integer
