@@ -1,0 +1,16 @@
+    # 3-say_my_name.txt
+    ====================
+    Using 3-say_my_name.py
+	--------------------
+	a function that prints My name is <first name> <last name>
+	===================
+	# Normal case
+	>>> say_my_name = __import__('3-say_my_name').say_my_name
+    >>> say_my_name("Kelechi", "Owuama")
+    My name is Kelechi Owuama
+
+	# Test a non string
+	>>> say_my_name(12, "White")
+	Traceback (most recent call last):
+	...
+	TypeError: first_name must be a string
