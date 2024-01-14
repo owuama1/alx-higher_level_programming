@@ -1,0 +1,50 @@
+    # 0-add_integer.txt
+    ====================
+    Using 0-add_integer.py
+	--------------------
+	This module is an addition function for floats and integers ``add_integer(a, b=98)``
+	How to use it
+	=============
+	``add_integer(a, b=98)`` returns the sum of its two arguments
+
+	::
+    >>> add_integer = __import__('0-add_integer').add_integer
+    >>> add_integer(1, 2)
+    3
+
+	It also works with negative numbers
+
+	::
+	>>> add_integer(100, -2)
+	98
+
+	By default b is 98, so it works with just an argument
+	::
+	>>> add_integer(2)
+	100
+
+	It also works with floats. It first cast the floats into an integr
+	::
+	>>> add_integer(100.3, -2)
+	98
+
+	Raises a TypeError if any or both is not an integer or a float
+	::
+	>>> add_integer(4, "School")
+	Traceback (most recent call last):
+	...
+	TypeError: b must be an integer
+
+	::
+	>>> add_integer(None)
+	Traceback (most recent call last):
+	...
+	TypeError: a must be an integer
+	
+	# Test very small float values
+	>>> add_integer(1e-20, 1e-20)
+	0
+
+	# Test large float values
+	>>> add_integer(1e20, 1e20)
+	200000000000000000000
