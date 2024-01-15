@@ -1,0 +1,12 @@
+    # 100-matrix_mul.txt 
+    ===================
+    Using 100-matrix_mul.py
+	--------------------
+	a function that  multiplies 2 matrices
+	===================
+	# Normal case
+	>>> matrix_mul = __import__('100-matrix_mul').matrix_mul
+	>>> m_a = [[1, 2],[3, 4]]
+    >>> m_b = m_a
+    >>> matrix_mul(m_a, m_b)
+    [[7, 10], [15, 22]]
