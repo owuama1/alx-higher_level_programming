@@ -1,0 +1,10 @@
+    # 101-lazy_matrix_mul.txt
+    ===================
+    Using 101-lazy_matrix_mul.py
+	--------------------
+	a function that  multiplies 2 matrices by using the module NumPy
+	===================
+	# Normal case
+	>>> lazy_matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
+	>>> print(lazy_matrix_mul([[1, 2]], [[3, 4], [5, 6]])) 
+	[[13 16]]
