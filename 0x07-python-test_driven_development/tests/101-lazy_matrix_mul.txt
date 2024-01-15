@@ -19,4 +19,4 @@
 	>>> print(lazy_matrix_mul([[]], [[1, 2], [3, 4]]))
 	Traceback (most recent call last):
 	...
-	ValueError: m_a and m_b can't be multiplied
+	ValueError: shapes (1,0) and (2,2) not aligned: 0 (dim 1) != 2 (dim 0)
