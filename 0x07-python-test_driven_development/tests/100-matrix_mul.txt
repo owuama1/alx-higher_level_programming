@@ -31,10 +31,8 @@
 	...
 	TypeError: m_b must be a list of lists
 
-	# Test equal rows
-	>>> m_a = [[1, 2], [3, 4, 5]]
-	>>> m_b = m_a
-	>>> matrix_mul(m_a, m_b)
+	# Test no args
+	>>> matrix_mul()
 	Traceback (most recent call last):
 	...
-	TypeError: Each row of m_a must be of the same size
+	TypeError: matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
