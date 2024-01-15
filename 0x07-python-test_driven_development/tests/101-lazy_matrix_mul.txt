@@ -15,8 +15,8 @@
 	...
 	TypeError: unsupported operand type(s) for *: 'NoneType' and 'NoneType'
 
-	# Test empty args
-	>>> print(lazy_matrix_mul([[]], [[1, 2], [3, 4]]))
+	# Test for integers and floats
+	>>> print(lazy_matrix_mul([[1, "non-number"]], [[{"a": 1}, 8.8]]))
 	Traceback (most recent call last):
 	...
-	ValueError: shapes (1,0) and (2,2) not aligned: 0 (dim 1) != 2 (dim 0)
+	TypeError: Object arrays are not currently supported
