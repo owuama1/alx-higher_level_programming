@@ -16,3 +16,9 @@
 	Traceback (most recent call last):
 	...
 	TypeError: m_a must be a list
+
+	# Test floating points
+	>>> m_a = [[1.1, 2.2], [3.3, 4.4]]
+	>>> m_b = m_a
+	>>> matrix_mul(m_a, m_b)
+	[[8.47, 12.100000000000001], [18.15, 26.620000000000005]]
