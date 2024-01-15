@@ -15,3 +15,8 @@
 	Traceback (most recent call last):
 	...
 	TypeError: text must be a string
+
+	# No spaces at the beginning or end
+	>>> text_indentation("   Hi:   ")
+	Hi:
+	<BLANKLINE>
