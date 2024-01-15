@@ -10,3 +10,9 @@
     >>> m_b = m_a
     >>> matrix_mul(m_a, m_b)
     [[7, 10], [15, 22]]
+
+	#Test with None
+	>>> print(matrix_mul(None, None))
+	Traceback (most recent call last):
+	...
+	TypeError: m_a must be a list
