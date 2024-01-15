@@ -24,3 +24,9 @@
     Traceback (most recent call last):
 	...
     ValueError: m_a and m_b can't be multiplied
+
+	# Test empty m_qqa or m_b
+	>>> print(matrix_mul([[1, 2]], []))
+	Traceback (most recent call last):
+	...
+	TypeError: m_b must be a list of lists
