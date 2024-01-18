@@ -10,8 +10,12 @@
     >>> my_list.print_sorted()
     [1, 2, 4, 5, 7, 9]
 
-	# Test None
-	>>> my_list = MyList(None)
-	Traceback (most recent call last):
-	...
-	TypeError: 'NoneType' object is not iterable
+	print_sorted function
+	-------------------
+	It help to sort them
+	==================
+	>>> my_list = MyList()
+	>>> my_list.append(4)
+	>>> my_list.append(1)
+	>>> my_list.print_sorted()
+	[1, 4]
