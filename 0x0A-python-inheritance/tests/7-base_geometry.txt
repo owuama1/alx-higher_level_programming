@@ -31,3 +31,10 @@
 	Traceback (most recent call last):
 	...
 	TypeError: Kc must be an integer
+
+	# Test < 0
+	>>> bg = BaseGeometry()
+	>>> bg.integer_validator("Kc", -1)
+	Traceback (most recent call last):
+	...
+	ValueError: Kc must be greater than 0
