@@ -38,3 +38,10 @@
 	Traceback (most recent call last):
 	...
 	ValueError: Kc must be greater than 0
+
+	# Test no args
+	>>> bg.integer_validator(None) # doctest: +NORMALIZE_WHITESPACE
+	Traceback (most recent call last):
+	...
+	TypeError: integer_validator() missing 1 required positional argument:
+	'value'
