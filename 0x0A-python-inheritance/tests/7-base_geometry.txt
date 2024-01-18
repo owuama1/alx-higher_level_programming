@@ -45,3 +45,6 @@
 	...
 	TypeError: integer_validator() missing 1 required positional argument:
 	'value'
+
+	# test Normal
+	>>> bg.integer_validator("valid number", 1)
