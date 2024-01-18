@@ -17,13 +17,6 @@ def inherits_from(obj, a_class):
     :return: True if the object is an instance of a class that inherited from
              the specified class; otherwise, False.
     """
-    # Check if the object is an instance of the specified class
-    if isinstance(obj, a_class):
+    if issubclass(obj.__class__, a_class) and obj.__class__ != a_class:
         return True
-
-    # Check if the object is an instance of a subclass of the specified class
-    for subclass in obj.__class__.__bases__:
-        if inherits_from(subclass, a_class):
-            return True
-
     return False
