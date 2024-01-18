@@ -1,0 +1,13 @@
+    # 7-base_geometry.txt
+    ====================
+    Usage 7-base_geometry.py
+	--------------------
+	def area(self): that raises an Exception with the message area() is not implemented
+	def integer_validator(self, name, value): that validates value
+	===================
+    # Test no args
+	>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+	>>> bg = BaseGeometry(None)
+	Traceback (most recent call last):
+	...
+	TypeError: BaseGeometry() takes no arguments
