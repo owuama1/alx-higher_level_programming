@@ -5,6 +5,7 @@ Module: geometry_module
 This module defines the BaseGeometry class.
 """
 
+
 class BaseGeometry:
     """
     A class representing the base geometry.
