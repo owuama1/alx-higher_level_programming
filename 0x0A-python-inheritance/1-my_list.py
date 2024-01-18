@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This module defines a class MyList that inherits from list.
+This module defines a class MyList that inherits list.
 
 Public instance method:
     - def print_sorted(self): Prints the list in ascending sorted order.
