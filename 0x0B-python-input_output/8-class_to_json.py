@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 Module Name: json_serializer
 Description: This module provides a function to create a dictionary
