@@ -5,6 +5,7 @@ Description: This module provides a function to read a text file in UTF-8 and
              print its contents to stdout.
 """
 
+
 def read_file(filename=""):
     """
     Read a text file in UTF-8 and print its contents to stdout.
@@ -15,6 +16,6 @@ def read_file(filename=""):
         content = file.read()
         print(content, end="")
 
+
 if __name__ == "__main__":
     pass
-
