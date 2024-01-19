@@ -7,17 +7,19 @@ Description: Read stdin line by line, accumulate metrics, and print statistics.
 from collections import Counter
 import sys
 
+
 def print_stats(total_size, status_counts):
     """
     Print accumulated metrics.
 
     Args:
         total_size (int): The total size of the files read so far.
-        status_counts (Counter): A Counter object tracking the occurrence of each status code.
+        status_counts (Counter): It tracks the occurrence of each status code.
     """
     print(f"File size: {total_size}")
     for code, count in sorted(status_counts.items()):
         print(f"{code}: {count}")
+
 
 if __name__ == "__main__":
     total_size = 0
