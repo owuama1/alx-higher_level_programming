@@ -43,5 +43,30 @@ class TestBase(unittest.TestCase):
             print(Base.__nb_objects)
 
 
+class TestCreateMethod(unittest.TestCase):
+
+    def test_create_with_attributes(self):
+        obj = YourBaseClass.create(id=1, width=2, height=3, x=4, y=5)
+        self.assertEqual(obj.id, 1)
+        self.assertEqual(obj.width, 2)
+        self.assertEqual(obj.height, 3)
+        self.assertEqual(obj.x, 4)
+        self.assertEqual(obj.y, 5)
+
+    def test_create_with_empty_attributes(self):
+        obj = YourBaseClass.create()
+        self.assertEqual(obj.id, 1)  # Assuming default id is 1
+        self.assertEqual(obj.width, 1)  # Assuming default width is 1
+        self.assertEqual(obj.height, 1)  # Assuming default height is 1
+        self.assertEqual(obj.x, 0)  # Assuming default x is 0
+        self.assertEqual(obj.y, 0)  # Assuming default y is 0
+
+    def test_create_with_partial_attributes(self):
+        obj = YourBaseClass.create(id=1, width=2)
+        self.assertEqual(obj.id, 1)
+        self.assertEqual(obj.width, 2)
+        # Assuming default values for height, x, and y
+
+
 if __name__ == '__main__':
     unittest.main()
