@@ -87,7 +87,7 @@ class Base:
         Returns:
             Base: Instance with attributes set.
         """
-        if dictionary:
+        if dictionary and dictionary != {}:
             if cls.__name__ == "Rectangle":
                 dummy = cls(1, 1)
             else:
