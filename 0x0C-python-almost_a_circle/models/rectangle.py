@@ -119,21 +119,27 @@ class Rectangle(Base):
                 "/{}".format(self.id, self.__x, self.__y,
                              self.__width, self.__height))
 
-    def update(self, *args):
+    def update(self, *args, **kwargs):
         """
         Update the attributes of the Rectangle instance.
 
         Args:
-            *args: Variable number of arguments in the following order:
-                   1st argument - id attribute
-                   2nd argument - width attribute
-                   3rd argument - height attribute
-                   4th argument - x attribute
-                   5th argument - y attribute
+            *args: Variable num of positional args.
+            If provided, **kwargs is ignored.
+            **kwargs: Variable number of keyword arguments
+            representing attribute names and values.
         """
-        if len(args) > 0:
+        if args:
+            # If positional args are provided, use them and ignore **kwargs
             self.id = args[0] if len(args) >= 1 else self.id
             self.width = args[1] if len(args) >= 2 else self.width
             self.height = args[2] if len(args) >= 3 else self.height
             self.x = args[3] if len(args) >= 4 else self.x
             self.y = args[4] if len(args) >= 5 else self.y
+        else:
+            # If no positional arguments, use **kwargs
+            self.id = kwargs.get('id', self.id)
+            self.width = kwargs.get('width', self.width)
+            self.height = kwargs.get('height', self.height)
+            self.x = kwargs.get('x', self.x)
+            self.y = kwargs.get('y', self.y)
