@@ -29,6 +29,21 @@ class Rectangle(Base):
         self.x = x
         self.y = y
 
+    def to_dictionary(self):
+        """
+        Return a dictionary representation of the Rectangle.
+
+        Returns:
+            dict: Dictionary containing id, width, height, x, and y.
+        """
+        return {
+            'id': self.id,
+            'width': self.width,
+            'height': self.height,
+            'x': self.x,
+            'y': self.y
+        }
+
     @property
     def width(self):
         """Getter method for width attribute."""
