@@ -6,6 +6,7 @@ Description: Contains the definition of the Base class.
 
 import json
 import csv
+import turtle
 
 
 class Base:
@@ -156,3 +157,62 @@ class Base:
                 return [cls.create(**d) for d in list_dicts]
         except IOError:
             return []
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Open a window and draw all the Rectangles and Squares.
+
+        Args:
+            list_rectangles (list): List of Rectangle instances.
+            list_squares (list): List of Square instances.
+        """
+        screen = turtle.Screen()
+        screen.bgcolor("white")
+
+        turtle.speed(2)  # Adjust speed as needed
+
+        # Draw Rectangles
+        for rectangle in list_rectangles:
+            Base.draw_rectangle(rectangle)
+
+        # Draw Squares
+        for square in list_squares:
+            Base.draw_square(square)
+
+        turtle.exitonclick()
+
+    @staticmethod
+    def draw_rectangle(rectangle):
+        """Draw a Rectangle using Turtle graphics.
+
+        Args:
+            rectangle (Rectangle): Rectangle instance to be drawn.
+        """
+        turtle.penup()
+        turtle.goto(rectangle.x, rectangle.y)
+        turtle.pendown()
+        turtle.color("blue")  # Adjust color as needed
+        turtle.begin_fill()
+        for _ in range(2):
+            turtle.forward(rectangle.width)
+            turtle.left(90)
+            turtle.forward(rectangle.height)
+            turtle.left(90)
+        turtle.end_fill()
+
+    @staticmethod
+    def draw_square(square):
+        """Draw a Square using Turtle graphics.
+
+        Args:
+            square (Square): Square instance to be drawn.
+        """
+        turtle.penup()
+        turtle.goto(square.x, square.y)
+        turtle.pendown()
+        turtle.color("red")  # Adjust color as needed
+        turtle.begin_fill()
+        for _ in range(4):
+            turtle.forward(square.size)
+            turtle.left(90)
+        turtle.end_fill()
