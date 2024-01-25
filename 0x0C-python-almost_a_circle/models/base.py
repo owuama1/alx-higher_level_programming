@@ -87,6 +87,10 @@ class Base:
         Returns:
             Base: Instance with attributes set.
         """
-        dummy = cls(1)  # Assuming default values for mandatory attributes
-        dummy.update(**dictionary)
-        return dummy
+        if dictionary and dictionary != {}:
+            if cls.__name__ == "Rectangle":
+                new = cls(1, 1)
+            else:
+                new = cls(1)
+            new.update(**dictionary)
+            return new
