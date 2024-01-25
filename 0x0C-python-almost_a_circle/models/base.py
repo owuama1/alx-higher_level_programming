@@ -5,6 +5,7 @@ Description: Contains the definition of the Base class.
 """
 
 import json
+import csv
 
 
 class Base:
@@ -114,33 +115,44 @@ class Base:
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
-        """
-        Save the CSV representation of list_objs to a file.
+        """Write the CSV serialization of a list of objects to a file.
 
         Args:
-            list_objs (list): List of instances that inherit from Base.
-
-        Returns:
-            None
+            list_objs (list): A list of inherited Base instances.
         """
         filename = cls.__name__ + ".csv"
-        with open(filename, mode='w', newline='') as file:
-            writer = csv.writer(file)
-            for obj in list_objs:
-                writer.writerow(obj.to_csv_row())
+        with open(filename, "w", newline="") as csvfile:
+            if list_objs is None or list_objs == []:
+                csvfile.write("[]")
+            else:
+                if cls.__name__ == "Rectangle":
+                    fieldnames = ["id", "width", "height", "x", "y"]
+                else:
+                    fieldnames = ["id", "size", "x", "y"]
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                for obj in list_objs:
+                    writer.writerow(obj.to_dictionary())
 
     @classmethod
     def load_from_file_csv(cls):
-        """
-        Load instances from a CSV file.
+        """Return a list of classes instantiated from a CSV file.
+
+        Reads from `<cls.__name__>.csv`.
 
         Returns:
-            list: List of instances.
+            If the file does not exist - an empty list.
+            Otherwise - a list of instantiated classes.
         """
         filename = cls.__name__ + ".csv"
         try:
-            with open(filename, mode='r') as file:
-                reader = csv.reader(file)
-                return [cls.create_from_csv_row(row) for row in reader]
-        except FileNotFoundError:
+            with open(filename, "r", newline="") as csvfile:
+                if cls.__name__ == "Rectangle":
+                    fieldnames = ["id", "width", "height", "x", "y"]
+                else:
+                    fieldnames = ["id", "size", "x", "y"]
+                list_dicts = csv.DictReader(csvfile, fieldnames=fieldnames)
+                list_dicts = [dict([k, int(v)] for k, v in d.items())
+                              for d in list_dicts]
+                return [cls.create(**d) for d in list_dicts]
+        except IOError:
             return []
