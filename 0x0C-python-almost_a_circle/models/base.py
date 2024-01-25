@@ -111,3 +111,36 @@ class Base:
                 return [cls.create(**d) for d in list_dicts]
         except FileNotFoundError:
             return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """
+        Save the CSV representation of list_objs to a file.
+
+        Args:
+            list_objs (list): List of instances that inherit from Base.
+
+        Returns:
+            None
+        """
+        filename = cls.__name__ + ".csv"
+        with open(filename, mode='w', newline='') as file:
+            writer = csv.writer(file)
+            for obj in list_objs:
+                writer.writerow(obj.to_csv_row())
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """
+        Load instances from a CSV file.
+
+        Returns:
+            list: List of instances.
+        """
+        filename = cls.__name__ + ".csv"
+        try:
+            with open(filename, mode='r') as file:
+                reader = csv.reader(file)
+                return [cls.create_from_csv_row(row) for row in reader]
+        except FileNotFoundError:
+            return []
