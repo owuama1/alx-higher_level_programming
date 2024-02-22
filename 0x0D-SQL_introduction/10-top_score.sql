@@ -5,5 +5,5 @@ Description: This script lists all records of the table second_table of the data
 
 -- SQL: Select score and name from the table second_table, ordered by score (top first)
 SELECT score, name
-FROM hbtn_0c_0.second_table
+FROM `second_table`
 ORDER BY score DESC;
