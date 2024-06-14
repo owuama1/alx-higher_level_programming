@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Fetches the value of the X-Request-Id variable from the header of a URL response.
+Fetches the value of the X-Request-Id var from the header of a URL response.
 """
 import urllib.request
 import sys
