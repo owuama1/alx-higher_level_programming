@@ -3,10 +3,11 @@
 This module contains a function to find a peak in a list of unsorted integers.
 """
 
+
 def find_peak(list_of_integers):
     """
     Finds a peak element in a list of unsorted integers.
-    A peak element is defined as an element that is greater than or equal to its neighbors.
+    A peak element is defined as an element that >=  to its neighbors.
     For corner elements, we need to consider only one neighbor.
 
     Args:
@@ -17,8 +18,9 @@ def find_peak(list_of_integers):
     """
     if not list_of_integers:
         return None
-    
+
     return _find_peak_helper(list_of_integers, 0, len(list_of_integers) - 1)
+
 
 def _find_peak_helper(arr, low, high):
     """
@@ -34,7 +36,7 @@ def _find_peak_helper(arr, low, high):
     """
     if low == high:
         return arr[low]
-    
+
     mid = (low + high) // 2
 
     if arr[mid] >= arr[mid + 1]:
