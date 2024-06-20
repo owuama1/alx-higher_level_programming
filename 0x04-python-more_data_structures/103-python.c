@@ -1,47 +1,70 @@
+#include <stdio.h>
 #include <Python.h>
 
 /**
- * print_python_list - Print information about a Python list
- * @p: PyObject representing a Python list
+ * print_python_bytes - Prints bytes information
+ *
+ * @p: Python Object
+ * Return: no return
  */
-void print_python_list(PyObject *p) {
-    Py_ssize_t i, size;
+void print_python_bytes(PyObject *p)
+{
+	char *string;
+	long int size, i, limit;
 
-    size = ((PyVarObject *)p)->ob_size;
-    printf("[*] Python list info\n");
-    printf("[*] Size of the Python List = %ld\n", size);
-    printf("[*] Allocated = %ld\n", ((PyListObject *)p)->allocated);
+	printf("[.] bytes object info\n");
+	if (!PyBytes_Check(p))
+	{
+		printf("  [ERROR] Invalid Bytes Object\n");
+		return;
+	}
 
-    for (i = 0; i < size; i++) {
-        printf("Element %ld: %s\n", i, Py_TYPE(PyList_GET_ITEM(p, i))->tp_name);
-    }
+	size = ((PyVarObject *)(p))->ob_size;
+	string = ((PyBytesObject *)p)->ob_sval;
+
+	printf("  size: %ld\n", size);
+	printf("  trying string: %s\n", string);
+
+	if (size >= 10)
+		limit = 10;
+	else
+		limit = size + 1;
+
+	printf("  first %ld bytes:", limit);
+
+	for (i = 0; i < limit; i++)
+		if (string[i] >= 0)
+			printf(" %02x", string[i]);
+		else
+			printf(" %02x", 256 + string[i]);
+
+	printf("\n");
 }
 
 /**
- * print_python_bytes - Print information about a Python bytes object
- * @p: PyObject representing a Python bytes object
+ * print_python_list - Prints list information
+ *
+ * @p: Python Object
+ * Return: no return
  */
-void print_python_bytes(PyObject *p) {
-    Py_ssize_t i, size;
-    char *bytes_str;
+void print_python_list(PyObject *p)
+{
+	long int size, i;
+	PyListObject *list;
+	PyObject *obj;
 
-    printf("[.] bytes object info\n");
-    if (!PyBytes_Check(p)) {
-        printf("  [ERROR] Invalid Bytes Object\n");
-        return;
-    }
+	size = ((PyVarObject *)(p))->ob_size;
+	list = (PyListObject *)p;
 
-    size = ((PyVarObject *)p)->ob_size;
-    bytes_str = ((PyBytesObject *)p)->ob_sval;
+	printf("[*] Python list info\n");
+	printf("[*] Size of the Python List = %ld\n", size);
+	printf("[*] Allocated = %ld\n", list->allocated);
 
-    printf("  size: %ld\n", size);
-    printf("  trying string: %s\n", bytes_str);
-
-    printf("  first 10 bytes: ");
-    for (i = 0; i < size && i < 10; i++) {
-        printf("%02hhx", bytes_str[i]);
-        if (i + 1 < size && i + 1 < 10)
-            printf(" ");
-    }
-	printf("\n");
+	for (i = 0; i < size; i++)
+	{
+		obj = ((PyListObject *)p)->ob_item[i];
+		printf("Element %ld: %s\n", i, ((obj)->ob_type)->tp_name);
+		if (PyBytes_Check(obj))
+			print_python_bytes(obj);
+	}
 }
