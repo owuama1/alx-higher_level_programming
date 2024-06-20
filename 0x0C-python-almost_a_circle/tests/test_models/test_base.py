@@ -1,72 +1,140 @@
 #!/usr/bin/python3
-"""
-Unit tests for models/base.py
-"""
-
 import unittest
 from models.base import Base
+from models.square import Square
+import json
+import inspect
+
+'''
+    Creating test cases for the base module
+'''
 
 
-class TestBase(unittest.TestCase):
+class test_base(unittest.TestCase):
+    '''
+        Testing base
+    '''
+    def test_id_none(self):
+        '''
+            Sending no id
+        '''
+        b = Base()
+        self.assertEqual(1, b.id)
+
+    def test_id(self):
+        '''
+            Sending a valid id
+        '''
+        b = Base(50)
+        self.assertEqual(50, b.id)
+
+    def test_id_zero(self):
+        '''
+            Sending an id 0
+        '''
+        b = Base(0)
+        self.assertEqual(0, b.id)
+
+    def test_id_negative(self):
+        '''
+            Sending a negative id
+        '''
+        b = Base(-20)
+        self.assertEqual(-20, b.id)
+
+    def test_id_string(self):
+        '''
+            Sending an id that is not an int
+        '''
+        b = Base("Betty")
+        self.assertEqual("Betty", b.id)
+
+    def test_id_list(self):
+        '''
+            Sending an id that is not an int
+        '''
+        b = Base([1, 2, 3])
+        self.assertEqual([1, 2, 3], b.id)
+
+    def test_id_dict(self):
+        '''
+            Sending an id that is not an int
+        '''
+        b = Base({"id": 109})
+        self.assertEqual({"id": 109}, b.id)
+
+    def test_id_tuple(self):
+        '''
+            Sending an id that is not an int
+        '''
+        b = Base((8,))
+        self.assertEqual((8,), b.id)
+
+    def test_to_json_type(self):
+        '''
+            Testing the json string
+        '''
+        sq = Square(1)
+        json_dict = sq.to_dictionary()
+        json_string = Base.to_json_string([json_dict])
+        self.assertEqual(type(json_string), str)
+
+    def test_to_json_value(self):
+        '''
+            Testing the json string
+        '''
+        sq = Square(1, 0, 0, 609)
+        json_dict = sq.to_dictionary()
+        json_string = Base.to_json_string([json_dict])
+        self.assertEqual(json.loads(json_string),
+                         [{"id": 609, "y": 0, "size": 1, "x": 0}])
+
+    def test_to_json_None(self):
+        '''
+            Testing the json string
+        '''
+        sq = Square(1, 0, 0, 609)
+        json_dict = sq.to_dictionary()
+        json_string = Base.to_json_string(None)
+        self.assertEqual(json_string, "[]")
+
+    def test_to_json_Empty(self):
+        '''
+            Testing the json string
+        '''
+        sq = Square(1, 0, 0, 609)
+        json_dict = sq.to_dictionary()
+        json_string = Base.to_json_string([])
+        self.assertEqual(json_string, "[]")
+
+
+class TestSquare(unittest.TestCase):
     """
-    Test cases for the Base class.
+    class for testing Base class' methods
     """
 
-    def test_constructor_with_id(self):
+    @classmethod
+    def setUpClass(cls):
         """
-        Test constructor with a specified id.
+        Set up class method for the doc tests
         """
-        obj = Base(42)
-        self.assertEqual(obj.id, 42)
+        cls.setup = inspect.getmembers(Base, inspect.isfunction)
 
-    def test_constructor_without_id(self):
+    def test_module_docstring(self):
         """
-        Test constructor without a specified id.
+        Tests if module docstring documentation exist
         """
-        obj1 = Base()
-        obj2 = Base()
-        self.assertEqual(obj1.id, 1)
-        self.assertEqual(obj2.id, 2)
+        self.assertTrue(len(Base.__doc__) >= 1)
 
-    def test_constructor_with_none_id(self):
+    def test_class_docstring(self):
         """
-        Test constructor with None as id.
+        Tests if class docstring documentation exist
         """
-        obj = Base(None)
-        self.assertTrue(hasattr(obj, 'id'))
+        self.assertTrue(len(Base.__doc__) >= 1)
 
-    def test_private_attribute(self):
+    def test_func_docstrings(self):
         """
-        Test access to private attribute __nb_objects.
+        Tests if methods docstring documntation exist
         """
-        with self.assertRaises(AttributeError):
-            print(Base.__nb_objects)
-
-
-class TestCreateMethod(unittest.TestCase):
-
-    def test_create_with_attributes(self):
-        obj = YourBaseClass.create(id=1, width=2, height=3, x=4, y=5)
-        self.assertEqual(obj.id, 1)
-        self.assertEqual(obj.width, 2)
-        self.assertEqual(obj.height, 3)
-        self.assertEqual(obj.x, 4)
-        self.assertEqual(obj.y, 5)
-
-    def test_create_with_empty_attributes(self):
-        obj = YourBaseClass.create()
-        self.assertEqual(obj.id, 1)  # Assuming default id is 1
-        self.assertEqual(obj.width, 1)  # Assuming default width is 1
-        self.assertEqual(obj.height, 1)  # Assuming default height is 1
-        self.assertEqual(obj.x, 0)  # Assuming default x is 0
-        self.assertEqual(obj.y, 0)  # Assuming default y is 0
-
-    def test_create_with_partial_attributes(self):
-        obj = YourBaseClass.create(id=1, width=2)
-        self.assertEqual(obj.id, 1)
-        self.assertEqual(obj.width, 2)
-        # Assuming default values for height, x, and y
-
-
-if __name__ == '__main__':
-    unittest.main()
+        for func in self.setup:
+            self.assertTrue(len(func[1].__doc__) >= 1)
