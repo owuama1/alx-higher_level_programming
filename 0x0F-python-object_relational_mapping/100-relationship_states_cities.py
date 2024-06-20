@@ -1,37 +1,32 @@
 #!/usr/bin/python3
 """
-Creates the State “California” with City “San Francisco”
-in the database hbtn_0e_100_usa
+This script prints all City objects
+from the database `hbtn_0e_14_usa`.
 """
 
 from sys import argv
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 from relationship_state import Base, State
 from relationship_city import City
-
-
-def main():
-    username = argv[1]
-    password = argv[2]
-    db_name = argv[3]
-
-    engine = create_engine(
-        f'mysql+mysqldb://{username}:{password}@localhost:3306/{db_name}'
-    )
-    Base.metadata.create_all(engine)
-
-    Session = sessionmaker(bind=engine)
-    session = Session()
-
-    california = State(name="California")
-    san_francisco = City(name="San Francisco", state=california)
-    session.add(california)
-    session.commit()
-
-    print(f"{california.id}")
-    session.close()
-
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 if __name__ == "__main__":
-    main()
+    """
+    Access to the database and get the cities
+    from the database.
+    """
+
+    db_uri = 'mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
+        argv[1], argv[2], argv[3])
+    engine = create_engine(db_uri)
+    Base.metadata.create_all(engine)
+    Session = sessionmaker(bind=engine)
+
+    session = Session()
+    cal_state = State(name='California')
+    sfr_city = City(name='San Francisco')
+    cal_state.cities.append(sfr_city)
+
+    session.add(cal_state)
+    session.commit()
+    session.close()

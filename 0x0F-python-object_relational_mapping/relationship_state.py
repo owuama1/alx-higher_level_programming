@@ -1,19 +1,23 @@
 #!/usr/bin/python3
 """
-Defines the State class with a relationship to City
+This script defines a City class
+to work with MySQLAlchemy ORM.
 """
 
-from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import relationship
-from sqlalchemy.ext.declarative import declarative_base
+from relationship_state import Base, State
+from sqlalchemy import Column, Integer, String, ForeignKey
 
-Base = declarative_base()
 
-class State(Base):
+class City(Base):
+    """City class
+    Attributes:
+        __tablename__ (str): The table name of the class
+        id (int): The id of the class
+        name (str): The name of the class
+        state_id (int): The state the city belongs to
     """
-    State class that represents a state table
-    """
-    __tablename__ = 'states'
-    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
+    __tablename__ = 'cities'
+
+    id = Column(Integer, primary_key=True)
     name = Column(String(128), nullable=False)
-    cities = relationship("City", backref="state", cascade="all, delete")
+    state_id = Column(Integer, ForeignKey('states.id'), nullable=False)
